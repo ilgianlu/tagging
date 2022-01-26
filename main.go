@@ -1,7 +1,9 @@
 package main
 
 import (
+	"log"
 	"net/http"
+	"os"
 
 	"github.com/go-chi/chi/v5"
 	"github.com/go-chi/chi/v5/middleware"
@@ -13,5 +15,6 @@ func main() {
 	r.Get("/", func(w http.ResponseWriter, r *http.Request) {
 		w.Write([]byte("welcome"))
 	})
-	http.ListenAndServe(":8080", r)
+	log.Println("listening", os.Getenv("LISTEN_INTERFACE"))
+	http.ListenAndServe(os.Getenv("LISTEN_INTERFACE"), r)
 }
