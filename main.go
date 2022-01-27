@@ -18,6 +18,9 @@ func main() {
 	r.Get("/staging", func(w http.ResponseWriter, r *http.Request) {
 		w.Write([]byte("welcome to staging"))
 	})
+	r.Get("/production", func(w http.ResponseWriter, r *http.Request) {
+		w.Write([]byte("welcome to production"))
+	})
 	log.Println("listening", os.Getenv("LISTEN_INTERFACE"))
 	http.ListenAndServe(os.Getenv("LISTEN_INTERFACE"), r)
 }
